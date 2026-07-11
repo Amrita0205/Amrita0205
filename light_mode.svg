@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="872" height="554" viewBox="0 0 872 554" font-family="'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace" font-size="13px">
+<rect x="0.5" y="0.5" width="871" height="553" rx="10" fill="#ffffff" stroke="#d0d7de"/>
+<text x="26" y="44" xml:space="preserve" fill="#8250df">                        _ __</text>
+<text x="26" y="62" xml:space="preserve" fill="#8250df">  ____ _____ ___  _____(_) /_____ _</text>
+<text x="26" y="80" xml:space="preserve" fill="#6639ba"> / __ `/ __ `__ \/ ___/ / __/ __ `/</text>
+<text x="26" y="98" xml:space="preserve" fill="#6639ba">/ /_/ / / / / / / /  / / /_/ /_/ /</text>
+<text x="26" y="116" xml:space="preserve" fill="#0969da">\__,_/_/ /_/ /_/_/  /_/\__/\__,_/</text>
+<text x="66" y="143" xml:space="preserve" fill="#1a7f37"></text>
+<text x="66" y="161" xml:space="preserve" fill="#1a7f37">    o     o     o     o</text>
+<text x="66" y="179" xml:space="preserve" fill="#1a7f37">    |\   /|\   /|\   /|</text>
+<text x="66" y="197" xml:space="preserve" fill="#1a7f37">    | \ / | \ / | \ / |</text>
+<text x="66" y="215" xml:space="preserve" fill="#1a7f37">    |  X  |  X  |  X  |</text>
+<text x="66" y="233" xml:space="preserve" fill="#1a7f37">    | / \ | / \ | / \ |</text>
+<text x="66" y="251" xml:space="preserve" fill="#1a7f37">    |/   \|/   \|/   \|</text>
+<text x="66" y="269" xml:space="preserve" fill="#1a7f37">    o     o     o     o</text>
+<text x="66" y="287" xml:space="preserve" fill="#1a7f37">     \    |     |    /</text>
+<text x="66" y="305" xml:space="preserve" fill="#1a7f37">      \   |     |   /</text>
+<text x="66" y="323" xml:space="preserve" fill="#1a7f37">       \  |     |  /</text>
+<text x="66" y="341" xml:space="preserve" fill="#1a7f37">        \ |     | /</text>
+<text x="66" y="359" xml:space="preserve" fill="#1a7f37">         \|     |/</text>
+<text x="66" y="377" xml:space="preserve" fill="#1a7f37">          o     o</text>
+<text x="66" y="395" xml:space="preserve" fill="#1a7f37">           \   /</text>
+<text x="66" y="413" xml:space="preserve" fill="#1a7f37">            \ /</text>
+<text x="66" y="431" xml:space="preserve" fill="#1a7f37">             o</text>
+<text x="66" y="449" xml:space="preserve" fill="#1a7f37">             |</text>
+<text x="66" y="467" xml:space="preserve" fill="#cf222e">           [ y^ ]</text>
+<text x="320" y="44" xml:space="preserve" font-weight="bold" fill="#0969da">amrita@github</text>
+<text x="320" y="62" xml:space="preserve" fill="#6e7781">----------------------------------------------</text>
+<text x="320" y="80" xml:space="preserve"><tspan fill="#953800">OS:                </tspan><tspan fill="#0a3069">Ubuntu (WSL2), Windows</tspan></text>
+<text x="320" y="98" xml:space="preserve"><tspan fill="#953800">Host:              </tspan><tspan fill="#0a3069">IIIT Raichur — B.Tech CSE '27, CGPA 8.51</tspan></text>
+<text x="320" y="116" xml:space="preserve"><tspan fill="#953800">Kernel:            </tspan><tspan fill="#0a3069">AI/ML Engineering</tspan></text>
+<text x="320" y="134" xml:space="preserve"><tspan fill="#953800">Uptime:            </tspan><tspan fill="#0a3069">Final year — graduating Jan 2027</tspan></text>
+<text x="320" y="152" xml:space="preserve"><tspan fill="#953800">IDE:               </tspan><tspan fill="#0a3069">VS Code, Jupyter</tspan></text>
+<text x="320" y="188" xml:space="preserve"><tspan fill="#953800">Stack.Languages:   </tspan><tspan fill="#0a3069">Python, SQL, TypeScript, JavaScript, C++</tspan></text>
+<text x="320" y="206" xml:space="preserve"><tspan fill="#953800">Stack.AI/ML:       </tspan><tspan fill="#0a3069">PyTorch, TensorFlow, Deep Learning, NLP</tspan></text>
+<text x="320" y="224" xml:space="preserve"><tspan fill="#953800">Stack.Agentic:     </tspan><tspan fill="#0a3069">LangChain, LangGraph, CrewAI, RAG, ChromaDB</tspan></text>
+<text x="320" y="242" xml:space="preserve"><tspan fill="#953800">Stack.MLOps:       </tspan><tspan fill="#0a3069">MLflow, FastAPI, Model Registry, Uvicorn</tspan></text>
+<text x="320" y="260" xml:space="preserve"><tspan fill="#953800">Stack.Backend:     </tspan><tspan fill="#0a3069">Node.js, Express, PostgreSQL, MongoDB</tspan></text>
+<text x="320" y="296" xml:space="preserve"><tspan fill="#953800">Projects.Agentic:  </tspan><tspan fill="#0a3069">AI Career Advisor — LangGraph + Groq agents</tspan></text>
+<text x="320" y="314" xml:space="preserve"><tspan fill="#953800">Projects.MLOps:    </tspan><tspan fill="#0a3069">E2E ML pipeline — MLflow + FastAPI, 97.5% acc</tspan></text>
+<text x="320" y="332" xml:space="preserve"><tspan fill="#953800">Projects.Crew:     </tspan><tspan fill="#0a3069">Blog-writing pipeline — 4 CrewAI agents</tspan></text>
+<text x="320" y="350" xml:space="preserve"><tspan fill="#953800">Projects.Now:      </tspan><tspan fill="#0a3069">Anoniz</tspan></text>
+<text x="320" y="368" xml:space="preserve"><tspan fill="#953800">Programs:          </tspan><tspan fill="#0a3069">Summer of Bitcoin '26 — Bit Lens, Coin Smith</tspan></text>
+<text x="320" y="404" xml:space="preserve"><tspan fill="#953800">Contact.Email:     </tspan><tspan fill="#0a3069">amrita0205kadam@gmail.com</tspan></text>
+<text x="320" y="422" xml:space="preserve"><tspan fill="#953800">Contact.LinkedIn:  </tspan><tspan fill="#0a3069">in/amrita-kadam-2a293b287</tspan></text>
+<text x="320" y="440" xml:space="preserve"><tspan fill="#953800">Contact.Portfolio: </tspan><tspan fill="#0a3069">amrita-kadam.vercel.app</tspan></text>
+<text x="320" y="476" xml:space="preserve" font-weight="bold" fill="#0969da">GitHub Stats</text>
+<text x="320" y="494" xml:space="preserve"><tspan fill="#953800">Repos:             </tspan><tspan fill="#0a3069">36 (public)   Followers: 4</tspan></text>
+<text x="320" y="512" xml:space="preserve"><tspan fill="#953800">Top Languages:     </tspan><tspan fill="#0a3069">Python · TypeScript · JavaScript</tspan></text>
+</svg>
