@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "scripts/generate_stats.py"
+      - "scripts/make_portrait.py"
+      - "images/*.jpeg"
       - ".github/workflows/stats.yml"
   schedule:
     - cron: "17 5 * * *"
@@ -23,6 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Install portrait renderer
+        run: python3 -m pip install Pillow
+
+      - name: Draw the portrait
+        run: python3 scripts/make_portrait.py
+
       - name: Draw the stat graphics
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,7 +39,7 @@ jobs:
 
       - name: Commit whatever changed
         run: |
-          FILES="stats.svg streak.svg langs.svg year.svg hd-*.svg"
+          FILES="ascii.svg stats.svg streak.svg langs.svg year.svg hd-*.svg"
           if [ -z "$(git status --porcelain -- $FILES)" ]; then
             echo "no change"
             exit 0

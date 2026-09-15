@@ -1,4 +1,6 @@
 __pycache__/
 *.pyc
-images/
-assets/
+images/*
+!images/portrait-1.jpeg
+!images/portrait-2.jpeg
+!images/portrait-3.jpeg

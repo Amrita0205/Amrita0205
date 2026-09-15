@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
 """Render the selected local portrait as an animated ASCII SVG."""
 
+from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "images" / "WhatsApp Image 2026-09-16 at 1.34.02 AM (1).jpeg"
+SOURCES = (
+    "portrait-1.jpeg",
+    "portrait-2.jpeg",
+    "portrait-3.jpeg",
+)
 OUTPUT = ROOT / "ascii.svg"
 CHARACTERS = " .:-=+*#%@"
 ASCII_WIDTH = 92
@@ -15,7 +20,8 @@ LINE_HEIGHT = 9
 
 
 def render():
-    image = Image.open(SOURCE).convert("L")
+    source = ROOT / "images" / SOURCES[date.today().isocalendar().week % len(SOURCES)]
+    image = Image.open(source).convert("L")
     image = image.crop((round(image.width * 0.28), 0, round(image.width * 0.88), round(image.height * 0.88)))
     image = ImageOps.autocontrast(image, cutoff=2)
     ascii_height = max(1, round(image.height / image.width * ASCII_WIDTH * 0.48))
@@ -36,7 +42,7 @@ def render():
         svg.append(f'<text x="0" y="{baseline}" xml:space="preserve" clip-path="url(#r{index})">{escape(line)}</text>')
     svg.append("</svg>")
     OUTPUT.write_text("\n".join(svg), encoding="utf-8")
-    print(f"rendered {SOURCE.name}")
+    print(f"rendered {source.name}")
 
 
 if __name__ == "__main__":
