@@ -7,7 +7,7 @@ from xml.sax.saxutils import escape
 from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "images" / "WhatsApp Image 2026-09-16 at 1.34.02 AM.jpeg"
+SOURCE = ROOT / "images" / "WhatsApp Image 2026-09-16 at 1.34.02 AM (2).jpeg"
 OUTPUT = ROOT / "ascii.svg"
 CHARACTERS = " .:-=+*#%@"
 ASCII_WIDTH = 92
@@ -16,7 +16,7 @@ LINE_HEIGHT = 9
 
 def render():
     image = Image.open(SOURCE).convert("L")
-    image = image.crop((520, 0, 1240, 700))
+    image = image.crop((round(image.width * 0.24), 0, round(image.width * 0.88), round(image.height * 0.88)))
     image = ImageOps.autocontrast(image, cutoff=2)
     ascii_height = max(1, round(image.height / image.width * ASCII_WIDTH * 0.48))
     image = ImageOps.fit(image, (ASCII_WIDTH, ascii_height), method=Image.Resampling.LANCZOS)
