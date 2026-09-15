@@ -1,7 +1,11 @@
 name: refresh stats
 
-# No push trigger: this job writes the generated graphics itself.
+# Refreshes after generator changes and on the nightly schedule.
 on:
+  push:
+    paths:
+      - "scripts/generate_stats.py"
+      - ".github/workflows/stats.yml"
   schedule:
     - cron: "17 5 * * *"
   workflow_dispatch:
