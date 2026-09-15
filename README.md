@@ -1,164 +1,131 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="portrait-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="portrait-light.svg">
-    <img alt="ASCII portrait of Amrita Kadam" src="portrait-dark.svg" width="500">
-  </picture>
+
+<img src="./portrait-dark.svg" width="500" alt="ASCII portrait of Amrita Kadam"/>
+
+<a href="https://amrita-kadam.vercel.app/">portfolio</a> &nbsp;·&nbsp;
+<a href="https://www.linkedin.com/in/amrita-kadam-2a293b287">linkedin</a> &nbsp;·&nbsp;
+<a href="mailto:amrita0205kadam@gmail.com">email</a>
+
 </div>
 
-<p align="center">
-  <a href="https://amrita-kadam.vercel.app/">portfolio</a> ·
-  <a href="https://www.linkedin.com/in/amrita-kadam-2a293b287">linkedin</a> ·
-  <a href="mailto:amrita0205kadam@gmail.com">email</a>
-</p>
-
-<p align="center">
-  <samp>AI/ML · LLM Reliability · Interpretability · Agentic Systems · Full-Stack ML</samp>
-</p>
-
-I build AI systems end to end — then measure where they fail.
-
-Currently exploring mechanistic interpretability, hallucination detection,
-retrieval, multi-agent workflows, and production ML.
-
 <br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-about-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-about-light.svg">
+  <img src="./heading-about-dark.svg" width="872" alt="about"/>
+</picture>
+
+> Final-year CS student at IIIT Raichur, focused on AI/ML, LLM reliability,<br>
+> mechanistic interpretability, and agentic systems.<br>
+> I like building things that can be measured, tested, and shipped.
+
+I currently work on LLM reliability and interpretability at Moleculyst, while<br>
+building retrieval and multi-agent systems on the side. I care about what a<br>
+model is doing internally just as much as whether the final product works.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-stack-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-stack-light.svg">
+  <img src="./heading-stack-dark.svg" width="872" alt="stack"/>
+</picture>
+
+<samp>
+python &nbsp; pytorch &nbsp; transformers &nbsp; transformerLens &nbsp; gemma scope<br>
+langgraph &nbsp; crewai &nbsp; langchain &nbsp; rag &nbsp; chromadb &nbsp; ollama<br>
+fastapi &nbsp; postgres &nbsp; mlflow &nbsp; next.js &nbsp; typescript &nbsp; git &nbsp; linux
+</samp>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="heading-projects-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="heading-projects-light.svg">
-  <img alt="projects" src="heading-projects-dark.svg">
+  <img src="./heading-projects-dark.svg" width="872" alt="projects"/>
 </picture>
 
-Veda AI
+**[Veda AI](https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI)** &nbsp;·&nbsp; <samp>next.js, fastapi, gemini</samp><br>
+Printed question paper in, handwritten answer sheet out: extracts questions,<br>
+maps out-of-order answers, tightens the answer region to actual ink, and grades.<br>
+[repo](https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI) &nbsp;·&nbsp;
+[live app](https://extraction-and-answer-mapping-veda-nine.vercel.app)
 
-Assessment extraction and answer mapping
+**[GhostRead](https://github.com/Amrita0205/ghostreader)** &nbsp;·&nbsp; <samp>python, tkinter, pymupdf</samp><br>
+Transparent always-on-top PDF reader with Windows click-through and ghost mode.<br>
+Ships a Windows executable, PyPI package, tests, releases, and CI.<br>
+[repo](https://github.com/Amrita0205/ghostreader) &nbsp;·&nbsp;
+[PyPI](https://pypi.org/project/ghostread/)
 
-A deployed vision-LLM pipeline that takes a printed question paper and handwritten answer sheet, extracts questions and answers, maps answers even when written out of order, tightens highlights onto the actual ink, and grades the submission.
+**[Agentic AI Career Advisor](https://github.com/anandn1/career-advisor)** &nbsp;·&nbsp; <samp>langgraph, rag</samp><br>
+Team-built career system with specialised agents for job analysis, resume<br>
+optimisation, skill-gap detection, and mock interviewing; grounded with ChromaDB.<br>
+[team repo](https://github.com/anandn1/career-advisor) &nbsp;·&nbsp;
+[demo](https://youtu.be/56Xtd1PNetw)
 
-<samp>Next.js · TypeScript · FastAPI · Python · Gemini Vision · NumPy · Pillow</samp>
-
-<a href="https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI">repo</a> ·
-<a href="https://extraction-and-answer-mapping-veda-nine.vercel.app">live app</a>
-
-GhostRead
-
-A transparent, always-on-top PDF reader
-
-A free, open-source reader for Windows, Linux and macOS. The Windows build adds click-through and ghost mode so a textbook can stay over a terminal or editor without becoming unreadable. The project ships a Windows executable, PyPI package, tests, and GitHub Actions automation.
-
-<samp>Python · Tkinter · PyMuPDF · ctypes · GitHub Actions · PyPI</samp>
-
-<a href="https://github.com/Amrita0205/ghostreader">repo</a> ·
-<a href="https://pypi.org/project/ghostread/">PyPI</a>
-
-Agentic AI Career Advisor
-
-Team-built multi-agent career system
-
-A LangGraph workflow with specialised agents for job-market analysis, resume optimisation, skill-gap detection, and mock interviewing, grounded with ChromaDB and Gemma embeddings.
-
-<samp>LangGraph · RAG · ChromaDB · Gemma · Python</samp>
-
-<a href="https://github.com/anandn1/career-advisor">team repo</a> ·
-<a href="https://youtu.be/56Xtd1PNetw">demo</a>
-
-Blog Writing Crew
-
-Research → writing → editing → social
-
-A four-agent CrewAI pipeline powered by Groq and llama-3.3-70b-versatile, producing a final blog post plus Twitter/X and LinkedIn variants.
-
-<samp>CrewAI · Groq · Llama 3.3 · Python</samp>
-
-<a href="https://github.com/Amrita0205/Blog_writing_AI_agent">repo</a>
-
-Local RAG API
-
-Fully offline retrieval-augmented QA
-
-A local RAG service built around FastAPI, ChromaDB and Ollama. Queries retrieve semantic context, augment the prompt, and generate an answer locally with no external API calls.
-
-<samp>FastAPI · ChromaDB · Ollama · embeddings · RAG</samp>
-
-<a href="https://github.com/Amrita0205/Multi-user_AI_Directory_RAG_Ollama">repo</a>
-
-Iris Prediction API
-
-A small end-to-end MLOps system
-
-MLflow tracks experiments and registers the best model; FastAPI serves the registered classifier through a REST endpoint. The repository includes solver comparisons and reported 97.5% test accuracy for the lbfgs run.
-
-<samp>MLflow · scikit-learn · FastAPI · REST · Python</samp>
-
-<a href="https://github.com/Amrita0205/MLops_prediction_iris_dataset">repo</a>
-
-<br>
+**[Blog Writing Crew](https://github.com/Amrita0205/Blog_writing_AI_agent)** &nbsp;·&nbsp; <samp>crewai, groq</samp><br>
+Four agents turn a topic into a researched blog post, edited final copy,<br>
+and Twitter/X + LinkedIn variants.<br>
+[repo](https://github.com/Amrita0205/Blog_writing_AI_agent)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="heading-research-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="heading-research-light.svg">
-  <img alt="research" src="heading-research-dark.svg">
+  <img src="./heading-research-dark.svg" width="872" alt="research"/>
 </picture>
 
-Moleculyst — Machine Learning Research Intern
+**Moleculyst — Machine Learning Research Intern**
 
-Working on LLM reliability and interpretability: probing residual-stream activations of frozen Gemma models, building reproducible activation extraction/caching pipelines, and designing causal validation experiments with steering vectors and attention-head ablation.
+Residual-stream probing on frozen Gemma models for LLM reliability and<br>
+interpretability, with reproducible activation extraction/caching and causal<br>
+validation experiments using steering vectors and attention-head ablation.
 
-<samp>PyTorch · TransformerLens · Gemma Scope · activation analysis · causal experiments</samp>
-
-<br>
+<samp>pytorch &nbsp; transformerLens &nbsp; gemma scope &nbsp; probing &nbsp; causal validation</samp>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="heading-stats-heading-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="heading-stats-heading-light.svg">
-  <img alt="github stats" src="heading-stats-heading-dark.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="heading-stats-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-stats-light.svg">
+  <img src="./heading-stats-dark.svg" width="872" alt="github stats"/>
 </picture>
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="stats-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="stats-light.svg">
-    <img alt="contribution summary and weekly sparkline" src="stats-dark.svg" width="480">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="streak-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="streak-light.svg">
-    <img alt="current and longest contribution streaks" src="streak-dark.svg" width="480">
-  </picture>
-</p>
+<div align="center">
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="langs-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="langs-light.svg">
-    <img alt="top languages" src="langs-dark.svg" width="480">
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="year-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="year-light.svg">
-    <img alt="past year of GitHub contributions" src="year-dark.svg" width="480">
-  </picture>
-</p>
+<img src="./stats-dark.svg" width="620" alt="GitHub contribution summary"/>
+<img src="./streak-dark.svg" width="620" alt="Current and longest contribution streak"/>
+<img src="./langs-dark.svg" width="620" alt="Top GitHub languages"/>
+<img src="./year-dark.svg" width="620" alt="Past year of GitHub contributions"/>
 
-<br>
+</div>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-about-this-page-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-about-this-page-light.svg">
+  <img src="./heading-about-this-page-dark.svg" width="872" alt="about this page"/>
+</picture>
+
+Every graphic on this page lives in this repository — there are no third-party<br>
+stats widgets or externally hosted cards. The portrait and section headings are<br>
+SVGs, while the contribution visuals are repository-local snapshots that can be<br>
+replaced by an Actions-generated version later without changing the README layout.
+
+The design intentionally stays close to GitHub's native rendering rules: monospace<br>
+text uses <samp>, custom typography lives in images, and dark/light variants use<br>
+<picture> so the page follows the reader's theme.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="heading-contact-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="heading-contact-light.svg">
-  <img alt="contact" src="heading-contact-dark.svg">
+  <img src="./heading-contact-dark.svg" width="872" alt="contact"/>
 </picture>
 
 <samp>
-Email&nbsp;&nbsp;&nbsp;&nbsp;amrita0205kadam@gmail.com<br>
-LinkedIn&nbsp;&nbsp;linkedin.com/in/amrita-kadam-2a293b287<br>
-Portfolio&nbsp;amrita-kadam.vercel.app<br>
-GitHub&nbsp;&nbsp;&nbsp;github.com/Amrita0205
+email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amrita0205kadam@gmail.com<br>
+linkedin&nbsp;&nbsp;&nbsp;&nbsp;linkedin.com/in/amrita-kadam-2a293b287<br>
+portfolio&nbsp;&nbsp;&nbsp;amrita-kadam.vercel.app<br>
+github&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;github.com/Amrita0205
 </samp>
 
-<br>
+<div align="center">
 
-<p align="center">
-  <a href="https://github.com/Amrita0205?tab=repositories">all repositories</a>
-</p>
+<a href="https://github.com/Amrita0205?tab=repositories">all repositories →</a>
 
-<sub>B.Tech CSE · IIIT Raichur · expected 2027 · Summer of Bitcoin 2026 · Tech Coordinator, CodeSoc</sub>
+</div>
+
+<sub>B.Tech CSE · IIIT Raichur · expected 2027 · Summer of Bitcoin 2026 · CodeSoc</sub>
