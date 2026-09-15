@@ -1,44 +1,164 @@
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="dark_mode.svg">
-    <source media="(prefers-color-scheme: light)" srcset="light_mode.svg">
-    <img alt="Amrita Kadam — AI/ML engineer. Stack: Python, PyTorch, LangChain, LangGraph, CrewAI, RAG, MLflow, FastAPI." src="dark_mode.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="portrait-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="portrait-light.svg">
+    <img alt="ASCII portrait of Amrita Kadam" src="portrait-dark.svg" width="500">
   </picture>
 </div>
 
 <p align="center">
-  <a href="https://amrita-kadam.vercel.app/">Portfolio</a> ·
-  <a href="https://www.linkedin.com/in/amrita-kadam-2a293b287">LinkedIn</a> ·
-  <a href="mailto:amrita0205kadam@gmail.com">Email</a>
+  <a href="https://amrita-kadam.vercel.app/">portfolio</a> ·
+  <a href="https://www.linkedin.com/in/amrita-kadam-2a293b287">linkedin</a> ·
+  <a href="mailto:amrita0205kadam@gmail.com">email</a>
 </p>
 
-<!--
-To update the numbers (repos, followers, etc.), edit the INFO list in gen_svg.py
-and regenerate, or edit the text inside dark_mode.svg / light_mode.svg directly.
--->
-<!-- One long line on purpose: <br> = line break, &nbsp; = spacing, so it survives a paste that flattens newlines. Do not add real line breaks inside the pre. -->
+<p align="center">
+  <samp>AI/ML · LLM Reliability · Interpretability · Agentic Systems · Full-Stack ML</samp>
+</p>
 
-Hi, I'm Amrita 👋
+I build AI systems end to end — then measure where they fail.
 
-Final-year CS student at IIIT Raichur and a mechanistic interpretability research intern at Moleculyst. I build AI systems and then try to break them — most of what I ship has tests, an eval, or a deployment attached, not just a notebook.
+Currently exploring mechanistic interpretability, hallucination detection,
+retrieval, multi-agent workflows, and production ML.
 
-What I work on
+<br>
 
-Multi-agent systems — CrewAI, LangGraph, agent hand-off and task routing
-RAG — ChromaDB, local and hosted LLMs, retrieval quality over vibes
-MLOps — MLflow experiment tracking and model registry, FastAPI serving
-Interpretability — probing what models actually represent internally
-Python — plus the boring parts: CI, packaging, releases
-What I'm building
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-projects-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-projects-light.svg">
+  <img alt="projects" src="heading-projects-dark.svg">
+</picture>
 
-GhostRead — a transparent, always-on-top PDF reader for Windows, in under 2,000 lines of Python. Read a textbook over your terminal at any opacity, with click-through and a ghost mode that keeps text sharp. Download the .exe · PyPI · CI: 108 tests
+Veda AI
 
-Blog Writing Crew — a four-agent CrewAI pipeline on Groq (llama-3.3-70b). A researcher gathers sources, a writer drafts the post, an editor takes it to publication quality, and a social media manager turns it into a Twitter thread and a LinkedIn post.
+Assessment extraction and answer mapping
 
-Local RAG API — a fully offline retrieval-augmented QA service. FastAPI endpoint → ChromaDB semantic search → prompt augmentation → local LLM via Ollama. No external API calls, no per-query cost.
+A deployed vision-LLM pipeline that takes a printed question paper and handwritten answer sheet, extracts questions and answers, maps answers even when written out of order, tightens highlights onto the actual ink, and grades the submission.
 
-Iris Prediction API — an end-to-end MLOps pipeline: MLflow tracks every run and registers the model, multiple solvers are compared from the tracking UI, and FastAPI serves the registered version behind a REST endpoint.
+<samp>Next.js · TypeScript · FastAPI · Python · Gemini Vision · NumPy · Pillow</samp>
 
-Currently
+<a href="https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI">repo</a> ·
+<a href="https://extraction-and-answer-mapping-veda-nine.vercel.app">live app</a>
 
-Doing interpretability research at Moleculyst, and building out evaluation for my RAG and agent projects — retrieval accuracy, latency, and cost per query, measured rather than guessed.
+GhostRead
+
+A transparent, always-on-top PDF reader
+
+A free, open-source reader for Windows, Linux and macOS. The Windows build adds click-through and ghost mode so a textbook can stay over a terminal or editor without becoming unreadable. The project ships a Windows executable, PyPI package, tests, and GitHub Actions automation.
+
+<samp>Python · Tkinter · PyMuPDF · ctypes · GitHub Actions · PyPI</samp>
+
+<a href="https://github.com/Amrita0205/ghostreader">repo</a> ·
+<a href="https://pypi.org/project/ghostread/">PyPI</a>
+
+Agentic AI Career Advisor
+
+Team-built multi-agent career system
+
+A LangGraph workflow with specialised agents for job-market analysis, resume optimisation, skill-gap detection, and mock interviewing, grounded with ChromaDB and Gemma embeddings.
+
+<samp>LangGraph · RAG · ChromaDB · Gemma · Python</samp>
+
+<a href="https://github.com/anandn1/career-advisor">team repo</a> ·
+<a href="https://youtu.be/56Xtd1PNetw">demo</a>
+
+Blog Writing Crew
+
+Research → writing → editing → social
+
+A four-agent CrewAI pipeline powered by Groq and llama-3.3-70b-versatile, producing a final blog post plus Twitter/X and LinkedIn variants.
+
+<samp>CrewAI · Groq · Llama 3.3 · Python</samp>
+
+<a href="https://github.com/Amrita0205/Blog_writing_AI_agent">repo</a>
+
+Local RAG API
+
+Fully offline retrieval-augmented QA
+
+A local RAG service built around FastAPI, ChromaDB and Ollama. Queries retrieve semantic context, augment the prompt, and generate an answer locally with no external API calls.
+
+<samp>FastAPI · ChromaDB · Ollama · embeddings · RAG</samp>
+
+<a href="https://github.com/Amrita0205/Multi-user_AI_Directory_RAG_Ollama">repo</a>
+
+Iris Prediction API
+
+A small end-to-end MLOps system
+
+MLflow tracks experiments and registers the best model; FastAPI serves the registered classifier through a REST endpoint. The repository includes solver comparisons and reported 97.5% test accuracy for the lbfgs run.
+
+<samp>MLflow · scikit-learn · FastAPI · REST · Python</samp>
+
+<a href="https://github.com/Amrita0205/MLops_prediction_iris_dataset">repo</a>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-research-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-research-light.svg">
+  <img alt="research" src="heading-research-dark.svg">
+</picture>
+
+Moleculyst — Machine Learning Research Intern
+
+Working on LLM reliability and interpretability: probing residual-stream activations of frozen Gemma models, building reproducible activation extraction/caching pipelines, and designing causal validation experiments with steering vectors and attention-head ablation.
+
+<samp>PyTorch · TransformerLens · Gemma Scope · activation analysis · causal experiments</samp>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-stats-heading-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-stats-heading-light.svg">
+  <img alt="github stats" src="heading-stats-heading-dark.svg">
+</picture>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="stats-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="stats-light.svg">
+    <img alt="contribution summary and weekly sparkline" src="stats-dark.svg" width="480">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="streak-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="streak-light.svg">
+    <img alt="current and longest contribution streaks" src="streak-dark.svg" width="480">
+  </picture>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="langs-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="langs-light.svg">
+    <img alt="top languages" src="langs-dark.svg" width="480">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="year-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="year-light.svg">
+    <img alt="past year of GitHub contributions" src="year-dark.svg" width="480">
+  </picture>
+</p>
+
+<br>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="heading-contact-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="heading-contact-light.svg">
+  <img alt="contact" src="heading-contact-dark.svg">
+</picture>
+
+<samp>
+Email&nbsp;&nbsp;&nbsp;&nbsp;amrita0205kadam@gmail.com<br>
+LinkedIn&nbsp;&nbsp;linkedin.com/in/amrita-kadam-2a293b287<br>
+Portfolio&nbsp;amrita-kadam.vercel.app<br>
+GitHub&nbsp;&nbsp;&nbsp;github.com/Amrita0205
+</samp>
+
+<br>
+
+<p align="center">
+  <a href="https://github.com/Amrita0205?tab=repositories">all repositories</a>
+</p>
+
+<sub>B.Tech CSE · IIIT Raichur · expected 2027 · Summer of Bitcoin 2026 · Tech Coordinator, CodeSoc</sub>
