@@ -167,6 +167,14 @@ def write_stats(total, current, longest, best_start, best_end, top_languages, co
         lang = replace_text(lang, f'x="306.0" y="{y}"', f"{value / total_bytes:.0%}" if value else "")
         lang = replace_text(lang, f'x="342.0" y="{y}"', escape(name))
         lang = replace_text(lang, f'x="614.0" y="{y}"', str(repo_counts[name]) if name else "")
+        if len(name) > 12:
+            for x in ("34", "342.0"):
+                lang = re.sub(
+                    rf'(<text x="{x}" y="{y}"[^>]*)(>)',
+                    rf'\1 textLength="78" lengthAdjust="spacingAndGlyphs"\2',
+                    lang,
+                    count=1,
+                )
     lang_path.write_text(lang, encoding="utf-8")
 
     year_path = ROOT / "year.svg"
