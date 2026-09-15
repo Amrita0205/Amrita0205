@@ -65,7 +65,7 @@ LinkedIn content.
 Every graphic here lives in this repository rather than loading from a third-party<br>
 stats service. The contribution graphics are generated from the public GitHub data<br>
 for Amrita0205 by the scheduled workflow. Three selected portrait sources power<br>
-the weekly ASCII rotation; other personal photos remain local and unpublished.
+the animated portrait SVG; other personal photos remain local and unpublished.
 
 The layout follows the same constraints as the reference design: custom typography<br>
 lives in images, body text stays native to GitHub, and <samp> keeps project metadata<br>
