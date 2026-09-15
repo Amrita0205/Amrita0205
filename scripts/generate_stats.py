@@ -5,6 +5,7 @@ from collections import defaultdict
 from datetime import date, timedelta
 import json
 import os
+import re
 from pathlib import Path
 from urllib.request import Request, urlopen
 from xml.sax.saxutils import escape
@@ -42,7 +43,8 @@ def fetch_data():
             weeks { contributionDays { date contributionCount } }
           }
         }
-        repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+                repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+                    totalCount
           nodes { languages(first: 10, orderBy: {field: SIZE, direction: DESC})
             { edges { size node { name color } } } }
         }
@@ -72,10 +74,20 @@ def streaks(days):
         current += 1
         cursor -= timedelta(days=1)
     longest = run = 0
+    best_start = best_end = None
+    run_start = None
     for day in days:
-        run = run + 1 if day["contributionCount"] else 0
-        longest = max(longest, run)
-    return current, longest
+        if day["contributionCount"]:
+            run_start = run_start or date.fromisoformat(day["date"])
+            run += 1
+            if run > longest:
+                longest = run
+                best_start = run_start
+                best_end = date.fromisoformat(day["date"])
+        else:
+            run = 0
+            run_start = None
+    return current, longest, best_start, best_end
 
 
 def languages(user):
@@ -86,54 +98,91 @@ def languages(user):
             name = edge["node"]["name"]
             totals[name] += edge["size"]
             colors[name] = edge["node"]["color"] or "#a3e635"
-    return sorted(totals.items(), key=lambda item: item[1], reverse=True)[:6], colors
+    top = sorted(totals.items(), key=lambda item: item[1], reverse=True)
+    repo_counts = defaultdict(int)
+    for repository in user["repositories"]["nodes"]:
+        for edge in repository["languages"]["edges"]:
+            repo_counts[edge["node"]["name"]] += 1
+    return top[:5], colors, repo_counts
 
 
-def svg_start(height):
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" width="620" height="{height}" '
-            f'viewBox="0 0 620 {height}" fill="none" font-family="ui-monospace,Consolas,monospace">'
-            '<style>text{fill:#d7e4d0} .muted{fill:#8da18a} .accent{fill:#bef264}</style>')
+def replace_text(svg, marker, value):
+    pattern = rf'(<text[^>]*{re.escape(marker)}[^>]*>)[^<]*(</text>)'
+    return re.sub(pattern, rf'\g<1>{value}\g<2>', svg, count=1)
 
 
-def write_stats(total, current, longest, top_languages, colors, days):
-    max_count = max((day["contributionCount"] for day in days), default=1)
-    cells = []
-    for index, day in enumerate(days):
-        x = 34 + (index % 53) * 10
-        y = 78 + (index // 53) * 10
-        level = min(4, round(day["contributionCount"] / max_count * 4)) if day["contributionCount"] else 0
-        cells.append(f'<rect x="{x}" y="{y}" width="7" height="7" rx="1" fill="{COLORS[level]}"/>')
-    stats = svg_start(148)
-    stats += f'<text x="34" y="36" font-size="28" font-weight="700" class="accent">{total:,}</text>'
-    stats += '<text x="34" y="55" font-size="12" class="muted">contributions in the last year</text>'
-    stats += f'<text x="330" y="36" font-size="16" class="accent">{current}</text><text x="330" y="55" font-size="11" class="muted">current streak</text>'
-    stats += f'<text x="455" y="36" font-size="16" class="accent">{longest}</text><text x="455" y="55" font-size="11" class="muted">longest streak</text>'
-    stats += "".join(cells) + "</svg>"
-    (ROOT / "stats.svg").write_text(stats, encoding="utf-8")
+def line_path(days):
+    weeks = [sum(day["contributionCount"] for day in days[index:index + 7]) for index in range(0, len(days), 7)]
+    weeks += [0] * (53 - len(weeks))
+    peak = max(weeks) or 1
+    points = [(index * 620 / 52, 138 - value / peak * 48) for index, value in enumerate(weeks[:53])]
+    return "M" + "L".join(f"{x:.1f} {y:.1f}" for x, y in points)
 
-    streak = svg_start(96) + '<text x="34" y="18" font-size="10" class="muted">CONTRIBUTION STREAKS</text>'
-    streak += f'<text x="34" y="52" font-size="28" class="accent">{current}</text><text x="34" y="72" font-size="11" class="muted">current streak</text>'
-    streak += f'<text x="260" y="52" font-size="28" class="accent">{longest}</text><text x="260" y="72" font-size="11" class="muted">longest streak</text></svg>'
-    (ROOT / "streak.svg").write_text(streak, encoding="utf-8")
 
-    lang = svg_start(142) + '<text x="34" y="22" font-size="10" class="muted">LANGUAGES IN OWNED REPOSITORIES</text>'
+def year_grid(days):
+    levels = " :+#@"
+    peak = max((day["contributionCount"] for day in days), default=1)
+    cells = {(day["date"]): levels[min(4, round(day["contributionCount"] / peak * 4))]
+             for day in days}
+    first = date.fromisoformat(days[0]["date"])
+    rows = []
+    for row in range(7):
+        row_chars = []
+        for week in range(53):
+            current = first + timedelta(days=week * 7 + row)
+            row_chars.append(cells.get(current.isoformat(), " ") * 2)
+        rows.append("".join(row_chars))
+    return rows
+
+
+def write_stats(total, current, longest, best_start, best_end, top_languages, colors, repo_counts, days):
+    stats_path = ROOT / "stats.svg"
+    stats = stats_path.read_text(encoding="utf-8")
+    stats = replace_text(stats, 'x="0" y="50"', f"{total:,}")
+    stats = replace_text(stats, 'x="620" y="30"', str(sum(bool(day["contributionCount"]) for day in days)))
+    best_week = max((sum(day["contributionCount"] for day in days[index:index + 7]) for index in range(0, len(days), 7)), default=0)
+    stats = replace_text(stats, 'x="620" y="70"', str(best_week))
+    path = line_path(days)
+    stats = re.sub(r'(<path d=")[^"]+(" class="w")', rf'\g<1>{path}\g<2>', stats, count=1)
+    stats = re.sub(r'(<path d=")[^"]+(" class="d-s")', rf'\g<1>{path}\g<2>', stats, count=1)
+    stats_path.write_text(stats, encoding="utf-8")
+
+    streak_path = ROOT / "streak.svg"
+    streak = streak_path.read_text(encoding="utf-8")
+    streak = replace_text(streak, 'x="34" y="44"', str(current))
+    streak = replace_text(streak, 'x="344.0" y="44"', str(longest))
+    streak_dates = "&#8212;"
+    if best_start and best_end:
+        streak_dates = f"{best_start:%b %d} &#8211; {best_end:%b %d}".lower()
+    streak = replace_text(streak, 'x="344.0" y="80"', streak_dates)
+    streak_path.write_text(streak, encoding="utf-8")
+
+    lang_path = ROOT / "langs.svg"
+    lang = lang_path.read_text(encoding="utf-8")
     total_bytes = max(sum(value for _, value in top_languages), 1)
-    for index, (name, value) in enumerate(top_languages):
-        y = 48 + index * 14
-        width = round(value / total_bytes * 350)
-        lang += f'<text x="34" y="{y}" font-size="11">{escape(name)}</text><rect x="160" y="{y - 9}" width="350" height="8" fill="#263525"/><rect x="160" y="{y - 9}" width="{width}" height="8" fill="{colors[name]}"/><text x="525" y="{y}" font-size="10" class="muted">{value / total_bytes:.0%}</text>'
-    (ROOT / "langs.svg").write_text(lang + "</svg>", encoding="utf-8")
+    for index in range(5):
+        name, value = top_languages[index] if index < len(top_languages) else ("", 0)
+        y = 34 + index * 22
+        lang = replace_text(lang, f'x="34" y="{y}"', escape(name))
+        lang = replace_text(lang, f'x="306.0" y="{y}"', f"{value / total_bytes:.0%}" if value else "")
+        lang = replace_text(lang, f'x="342.0" y="{y}"', escape(name))
+        lang = replace_text(lang, f'x="614.0" y="{y}"', str(repo_counts[name]) if name else "")
+    lang_path.write_text(lang, encoding="utf-8")
 
-    year = svg_start(80) + f'<text x="34" y="22" font-size="10" class="muted">THE YEAR</text><text x="34" y="42" font-size="12">{sum(bool(day["contributionCount"]) for day in days)} of {len(days)} days had a contribution</text></svg>'
-    (ROOT / "year.svg").write_text(year, encoding="utf-8")
+    year_path = ROOT / "year.svg"
+    year = year_path.read_text(encoding="utf-8")
+    year = replace_text(year, 'x="34" y="32"', f"{sum(bool(day['contributionCount']) for day in days)} of {len(days)} days had a contribution")
+    for index, row in enumerate(year_grid(days)):
+        year = replace_text(year, f'y="{52.6 + index * 11}"', row)
+    year_path.write_text(year, encoding="utf-8")
 
 
 def main():
     user = fetch_data()
     total, days = flatten_days(user)
-    current, longest = streaks(days)
-    top_languages, colors = languages(user)
-    write_stats(total, current, longest, top_languages, colors, days)
+    current, longest, best_start, best_end = streaks(days)
+    top_languages, colors, repo_counts = languages(user)
+    write_stats(total, current, longest, best_start, best_end, top_languages, colors, repo_counts, days)
     print(f"generated stats for {LOGIN}")
 
 
