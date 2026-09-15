@@ -16,14 +16,15 @@ LINE_HEIGHT = 9
 
 def render():
     image = Image.open(SOURCE).convert("L")
-    image = image.crop((400, 0, 1300, 720))
+    image = image.crop((520, 0, 1240, 700))
+    image = ImageOps.autocontrast(image, cutoff=2)
     ascii_height = max(1, round(image.height / image.width * ASCII_WIDTH * 0.48))
     image = ImageOps.fit(image, (ASCII_WIDTH, ascii_height), method=Image.Resampling.LANCZOS)
 
     lines = []
     for row in range(image.height):
         pixels = image.crop((0, row, image.width, row + 1)).getdata()
-        lines.append("".join(CHARACTERS[pixel * (len(CHARACTERS) - 1) // 255] for pixel in pixels).rstrip())
+        lines.append("".join(CHARACTERS[(255 - pixel) * (len(CHARACTERS) - 1) // 255] for pixel in pixels).rstrip())
 
     height = len(lines) * LINE_HEIGHT
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="460" height="{height}" viewBox="0 0 460 {height}" font-family="monospace" font-size="7.8px">']
