@@ -63,8 +63,9 @@ LinkedIn content.
 <img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
 
 Every graphic here lives in this repository rather than loading from a third-party<br>
-stats service. The portrait and section headings are local SVGs, and the contribution<br>
-graphics are local SVG snapshots kept alongside this README.
+stats service. The contribution graphics are generated from the public GitHub data<br>
+for Amrita0205 by the scheduled workflow. Portrait source photos stay local and<br>
+ignored; only the generated ASCII SVG is published.
 
 The layout follows the same constraints as the reference design: custom typography<br>
 lives in images, body text stays native to GitHub, and <samp> keeps project metadata<br>
