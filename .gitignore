@@ -1,6 +1,5 @@
 __pycache__/
 *.pyc
 images/*
-!images/portrait-1.jpeg
-!images/portrait-2.jpeg
-!images/portrait-3.jpeg
+!images/Gemini_Generated_Image_b5vlv4b5vlv4b5vl.png
+!images/Gemini_Generated_Image_mol45vmol45vmol4.png
