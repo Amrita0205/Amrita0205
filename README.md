@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./ascii.svg?v=luminance" width="460" alt="Amrita Kadam"/>
+<img src="./ascii.svg?v=face-focus" width="460" alt="Amrita Kadam"/>
 
 <img src="./stats.svg" width="620" alt="Contributions in the last year"/>
 

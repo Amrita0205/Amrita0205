@@ -19,6 +19,8 @@ def render():
     encoded = []
     for source in SOURCES:
         image = Image.open(source).convert("RGB")
+        width, height = image.size
+        image = image.crop((round(width * 0.25), 0, round(width * 0.75), height))
         image.thumbnail((460, 352), Image.Resampling.LANCZOS)
         buffer = BytesIO()
         image.save(buffer, format="PNG", optimize=True)
