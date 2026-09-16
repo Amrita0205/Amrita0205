@@ -159,6 +159,7 @@ def write_stats(total, current, longest, best_start, best_end, top_languages, co
 
     lang_path = ROOT / "langs.svg"
     lang = lang_path.read_text(encoding="utf-8")
+    lang = re.sub(r'\s(?:textLength|lengthAdjust)="[^"]*"', "", lang)
     total_bytes = max(sum(value for _, value in top_languages), 1)
     for index in range(5):
         name, value = top_languages[index] if index < len(top_languages) else ("", 0)
