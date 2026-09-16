@@ -5,7 +5,7 @@ on:
     paths:
       - "scripts/generate_stats.py"
       - "scripts/make_portrait.py"
-      - "images/*.png"
+      - "images/Gemini_Generated_Image_b5vlv4b5vlv4b5vl.png"
       - ".github/workflows/stats.yml"
   schedule:
     - cron: "17 5 * * *"
