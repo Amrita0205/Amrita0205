@@ -1,36 +1,35 @@
 #!/usr/bin/env python3
 """Render the selected local portrait as an animated ASCII SVG."""
 
-import base64
-from io import BytesIO
 from pathlib import Path
-
-from PIL import Image
+from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCES = (
-    ROOT / "images" / "Gemini_Generated_Image_b5vlv4b5vlv4b5vl.png",
-)
+SOURCE_README = ROOT / "ASCII_Fidelity_AI_Image06_README.md"
 OUTPUT = ROOT / "ascii.svg"
+LINE_HEIGHT = 5.6
+FONT_SIZE = 4.8
 
 
 def render():
-    encoded = []
-    for source in SOURCES:
-        image = Image.open(source).convert("RGB")
-        width, height = image.size
-        image = image.crop((round(width * 0.25), 0, round(width * 0.75), height))
-        image.thumbnail((460, 352), Image.Resampling.LANCZOS)
-        buffer = BytesIO()
-        image.save(buffer, format="PNG", optimize=True)
-        payload = base64.b64encode(buffer.getvalue()).decode("ascii")
-        encoded.append(payload)
-    svg = ['<svg xmlns="http://www.w3.org/2000/svg" width="460" height="352" viewBox="0 0 460 352">']
-    svg.append('<style>image{image-rendering:auto}</style>')
-    svg.append(f'<g opacity="0"><animate attributeName="opacity" values="0;1" dur="1.4s" fill="freeze"/><image x="0" y="0" width="460" height="352" preserveAspectRatio="xMidYMid meet" href="data:image/png;base64,{encoded[0]}"/></g>')
+    content = SOURCE_README.read_text(encoding="utf-8")
+    lines = content.split("```text", 1)[1].split("```", 1)[0].splitlines()
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    while lines and not lines[-1].strip():
+        lines.pop()
+    width = max(len(line) for line in lines)
+    height = len(lines) * LINE_HEIGHT
+    svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="460" height="{height:.0f}" viewBox="0 0 460 {height:.0f}" font-family="monospace" font-size="{FONT_SIZE}px">']
+    svg.append('<style>text{fill:#c9d1d9}@media(prefers-color-scheme:dark){text{fill:#f0f6fc}}</style>')
+    svg.append(f'<g opacity="0"><animate attributeName="opacity" values="0;1" dur="1.4s" fill="freeze"/>')
+    for index, line in enumerate(lines):
+        baseline = (index + 1) * LINE_HEIGHT
+        svg.append(f'<text x="0" y="{baseline}" xml:space="preserve">{escape(line)}</text>')
+    svg.append('</g>')
     svg.append('</svg>')
     OUTPUT.write_text("\n".join(svg), encoding="utf-8")
-    print("rendered one supplied ASCII PNG frame")
+    print(f"rendered uploaded ASCII artwork: {width} columns x {len(lines)} rows")
 
 
 if __name__ == "__main__":

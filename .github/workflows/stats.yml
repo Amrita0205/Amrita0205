@@ -4,8 +4,6 @@ on:
   push:
     paths:
       - "scripts/generate_stats.py"
-      - "scripts/make_portrait.py"
-      - "images/Gemini_Generated_Image_b5vlv4b5vlv4b5vl.png"
       - ".github/workflows/stats.yml"
   schedule:
     - cron: "17 5 * * *"
@@ -24,12 +22,6 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
-
-      - name: Install portrait renderer
-        run: python3 -m pip install Pillow
-
-      - name: Draw the portrait
-        run: python3 scripts/make_portrait.py
 
       - name: Draw the stat graphics
         env:
