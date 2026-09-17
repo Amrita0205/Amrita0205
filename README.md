@@ -27,7 +27,7 @@ and the engineering needed to turn an experiment into a usable product.
 <img src="./hd-projects.svg" width="620" alt="projects"/>
 
 **[Veda AI](https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI)** &nbsp;·&nbsp; <samp>next.js, fastapi, gemini vision</samp><br>
-Question paper in, handwritten answer sheet out. Extracts questions and answers,<br>
+Question paper in, handwritten answer sheet in. Extracts questions and answers,<br>
 maps out-of-order answers, tightens highlights onto actual ink, and grades.<br>
 [repo](https://github.com/Amrita0205/Extraction-and-Answer-Mapping-Veda-AI) &nbsp;·&nbsp;
 [live app](https://extraction-and-answer-mapping-veda-nine.vercel.app)
