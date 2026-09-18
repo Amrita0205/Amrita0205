@@ -38,9 +38,14 @@ def fetch_data():
     query($login: String!, $from: DateTime!, $to: DateTime!) {
       user(login: $login) {
         contributionsCollection(from: $from, to: $to) {
+          totalCommitContributions
+          totalPullRequestContributions
+          totalIssueContributions
+          totalPullRequestReviewContributions
+          totalRepositoryContributions
           contributionCalendar {
             totalContributions
-            weeks { contributionDays { date contributionCount } }
+            weeks { contributionDays { date contributionCount contributionLevel } }
           }
         }
                 repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
@@ -135,6 +140,99 @@ def year_grid(days):
     return rows
 
 
+LEVELS = ["NONE", "FIRST_QUARTILE", "SECOND_QUARTILE", "THIRD_QUARTILE", "FOURTH_QUARTILE"]
+HEAT_LIGHT = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"]
+HEAT_DARK = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
+
+
+def shared_style():
+    """Reuse the inlined JetBrains Mono and text colours from stats.svg."""
+    stats = (ROOT / "stats.svg").read_text(encoding="utf-8")
+    return re.search(r"<style>.*?</style>", stats, re.S).group(0)
+
+
+def svg_open(width, height):
+    return [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+            f'viewBox="0 0 {width} {height}" fill="none" font-family="JBMono,ui-monospace,'
+            f'SFMono-Regular,Menlo,Consolas,&apos;Liberation Mono&apos;,monospace">', shared_style()]
+
+
+def write_heatmap(days):
+    """GitHub-style contribution calendar: one square per day, weeks as columns."""
+    left, top, pitch, cell = 30, 20, 11, 9
+    first = date.fromisoformat(days[0]["date"])
+    sunday = first - timedelta(days=(first.weekday() + 1) % 7)
+    weeks = ((date.fromisoformat(days[-1]["date"]) - sunday).days // 7) + 1
+    width, height = 620, top + 7 * pitch + 26
+    light = "".join(f".l{i}{{fill:{c}}}" for i, c in enumerate(HEAT_LIGHT))
+    dark = "".join(f".l{i}{{fill:{c}}}" for i, c in enumerate(HEAT_DARK))
+    svg = svg_open(width, height)
+    svg.append(f"<style>{light}@media(prefers-color-scheme:dark){{{dark}}}</style>")
+    for row, label in ((1, "mon"), (3, "wed"), (5, "fri")):
+        svg.append(f'<text x="0" y="{top + row * pitch + cell - 1}" class="m-f" font-size="9">{label}</text>')
+    month = None
+    labels = []
+    columns = defaultdict(list)
+    for day in days:
+        current = date.fromisoformat(day["date"])
+        column = (current - sunday).days // 7
+        row = (current.weekday() + 1) % 7
+        if row == 0 and current.month != month:
+            month = current.month
+            # a new month crowding the previous label wins, like GitHub drops the partial first month
+            if labels and column - labels[-1][0] < 3:
+                labels.pop()
+            if column <= weeks - 2:
+                labels.append((column, f"{current:%b}".lower()))
+        level = LEVELS.index(day.get("contributionLevel", "NONE"))
+        title = f'{day["contributionCount"]} on {current:%b %d}'.lower()
+        columns[column].append(f'<rect x="{left + column * pitch}" y="{top + row * pitch}" width="{cell}" '
+                               f'height="{cell}" rx="2" class="l{level}"><title>{title}</title></rect>')
+    for column, name in labels:
+        svg.append(f'<text x="{left + column * pitch}" y="10" class="m-f" font-size="9">{name}</text>')
+    for column in sorted(columns):
+        # sweep the weeks in left to right, once
+        svg.append(f'<g opacity="0"><animate attributeName="opacity" from="0" to="1" '
+                   f'begin="{0.1 + column * 0.02:.2f}s" dur="0.3s" fill="freeze"/>{"".join(columns[column])}</g>')
+    legend_y = top + 7 * pitch + 12
+    x = width - 5 * pitch - 30
+    svg.append(f'<text x="{x - 6}" y="{legend_y + cell - 1}" class="m-f" font-size="9" text-anchor="end">less</text>')
+    for level in range(5):
+        svg.append(f'<rect x="{x + level * pitch}" y="{legend_y}" width="{cell}" height="{cell}" rx="2" class="l{level}"/>')
+    svg.append(f'<text x="{x + 5 * pitch + 4}" y="{legend_y + cell - 1}" class="m-f" font-size="9">more</text>')
+    svg.append("</svg>")
+    (ROOT / "heatmap.svg").write_text("".join(svg), encoding="utf-8")
+
+
+def write_activity(user):
+    """Share of commits, pull requests, issues and reviews, like GitHub's activity overview."""
+    collection = user["contributionsCollection"]
+    kinds = [
+        ("commits", collection["totalCommitContributions"]),
+        ("pull requests", collection["totalPullRequestContributions"]),
+        ("issues", collection["totalIssueContributions"]),
+        ("code review", collection["totalPullRequestReviewContributions"]),
+    ]
+    total = max(sum(count for _, count in kinds), 1)
+    width, row_height, bar_x, bar_w = 620, 22, 130, 400
+    svg = svg_open(width, 12 + len(kinds) * row_height)
+    svg.append("<style>.g{fill:#40c463}.t{fill:#6e7681;opacity:.13}"
+               "@media(prefers-color-scheme:dark){.g{fill:#39d353}.t{fill:#c9d1d9;opacity:.16}}</style>")
+    for index, (label, count) in enumerate(kinds):
+        y = 12 + index * row_height
+        share = count / total
+        begin = 0.1 + index * 0.12
+        svg.append(f'<text x="0" y="{y + 8}" class="d-f" font-size="12">{label}</text>')
+        svg.append(f'<rect x="{bar_x}" y="{y}" width="{bar_w}" height="10" rx="2" class="t"/>')
+        svg.append(f'<rect x="{bar_x}" y="{y}" width="0" height="10" rx="2" class="g">'
+                   f'<animate attributeName="width" from="0" to="{bar_w * share:.1f}" begin="{begin:.2f}s" '
+                   f'dur="0.6s" fill="freeze"/></rect>')
+        svg.append(f'<text x="{width}" y="{y + 8}" class="e-f" font-size="12" text-anchor="end">'
+                   f'{count:,} <tspan class="m-f">{share:.0%}</tspan></text>')
+    svg.append("</svg>")
+    (ROOT / "activity.svg").write_text("".join(svg), encoding="utf-8")
+
+
 def write_stats(total, current, longest, best_start, best_end, top_languages, colors, repo_counts, days):
     stats_path = ROOT / "stats.svg"
     stats = stats_path.read_text(encoding="utf-8")
@@ -192,6 +290,8 @@ def main():
     current, longest, best_start, best_end = streaks(days)
     top_languages, colors, repo_counts = languages(user)
     write_stats(total, current, longest, best_start, best_end, top_languages, colors, repo_counts, days)
+    write_heatmap(days)
+    write_activity(user)
     print(f"generated stats for {LOGIN}")
 
 

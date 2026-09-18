@@ -52,6 +52,10 @@ LinkedIn content.
 
 <div align="center">
 
+<img src="./heatmap.svg" width="620" alt="Contribution calendar for the last year"/>
+
+<img src="./activity.svg" width="620" alt="Commits, pull requests, issues and code review"/>
+
 <img src="./streak.svg" width="620" alt="Current and longest streak"/>
 
 <img src="./langs.svg" width="620" alt="Top languages by bytes and by repo"/>
