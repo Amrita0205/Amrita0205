@@ -48,6 +48,28 @@ skill-gap detection, and mock interviewing, grounded with ChromaDB.<br>
 Four agents research, write, edit, and turn the result into Twitter/X and<br>
 LinkedIn content.
 
+<img src="./hd-outside.svg" width="620" alt="outside the terminal"/>
+
+> Part-time model debugger, full-time space daydreamer.
+
+By day I open up language models to see what's going on in there:<br>
+which features light up, which neurons fire, and why a model can<br>
+be so confident and so wrong at the same time. The dream is models<br>
+we can actually read, not just run and hope.
+
+By night I'm usually thinking about space. Somewhere out there a<br>
+star is being born, another is quietly collapsing, and a planet<br>
+nobody has named yet is doing laps around both. It's oddly calming.<br>
+The universe ships things half-finished and figures it out later too.
+
+Turns out it's the same hobby twice: staring at something huge and<br>
+complicated and asking "okay, but what's happening inside?"
+
+The rest of the time I'm dancing, singing, or drawing.<br>
+None of them professionally. All of them with full commitment.
+
+<samp>currently: interpreting transformers &nbsp;·&nbsp; wondering about dying stars &nbsp;·&nbsp; doodling in margins</samp>
+
 <img src="./hd-stats.svg" width="620" alt="stats"/>
 
 <div align="center">
