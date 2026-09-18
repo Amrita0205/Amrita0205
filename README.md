@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./ascii.svg?v=colour" width="460" alt="Amrita Kadam"/>
+<img src="./ascii.svg?v=typed" width="460" alt="Amrita Kadam"/>
 
 <img src="./stats.svg" width="620" alt="Contributions in the last year"/>
 
@@ -63,7 +63,7 @@ LinkedIn content.
 <img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
 
 Every graphic here is generated, not embedded from anyone else's server.<br>
-`ascii.svg` is a photo of me drawn in coloured characters, cropped and faded in by<br>
+`ascii.svg` is a photo of me drawn in coloured characters, typed out row by row by<br>
 [`scripts/make_portrait.py`](scripts/make_portrait.py); the stat graphics and<br>
 these section headings are drawn by [a scheduled action](.github/workflows/stats.yml)<br>
 straight from the GitHub GraphQL API, once a day, committing only what changed.
