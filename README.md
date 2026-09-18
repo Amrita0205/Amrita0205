@@ -86,27 +86,6 @@ None of them professionally. All of them with full commitment.
 
 </div>
 
-<img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
-
-Every graphic here is generated, not embedded from anyone else's server.<br>
-`ascii.svg` is a photo of me drawn in coloured characters, typed out row by row by<br>
-[`scripts/make_portrait.py`](scripts/make_portrait.py); the stat graphics and<br>
-these section headings are drawn by [a scheduled action](.github/workflows/stats.yml)<br>
-straight from the GitHub GraphQL API, once a day, committing only what changed.
-
-They animate with SMIL inside the SVG, because GitHub strips scripts from<br>
-READMEs — and since nothing loads from a third party, nothing here can<br>
-rate-limit or go dark. The headings are SVGs for the same reason: GitHub also<br>
-strips CSS, so an image is the only way to put this page's own typeface on them.
-
-The typeface is JetBrains Mono, inlined as base64 inside each graphic so it<br>
-renders the same everywhere. The portrait's grid assumes an advance of exactly<br>
-0.600 em, so every row is pinned to that width — a narrower default monospace<br>
-would otherwise squeeze it.
-
-Language totals cover my own public, non-fork repositories. `year.svg` is one<br>
-character per day, on a ramp of `:` `+` `#` `@`, quiet to loud.
-
 <div align="center">
 <a href="https://github.com/Amrita0205?tab=repositories">all repositories →</a>
 </div>
