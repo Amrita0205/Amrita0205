@@ -124,22 +124,6 @@ def line_path(days):
     return "M" + "L".join(f"{x:.1f} {y:.1f}" for x, y in points)
 
 
-def year_grid(days):
-    levels = " :+#@"
-    peak = max((day["contributionCount"] for day in days), default=1)
-    cells = {(day["date"]): levels[min(4, round(day["contributionCount"] / peak * 4))]
-             for day in days}
-    first = date.fromisoformat(days[0]["date"])
-    rows = []
-    for row in range(7):
-        row_chars = []
-        for week in range(53):
-            current = first + timedelta(days=week * 7 + row)
-            row_chars.append(cells.get(current.isoformat(), " ") * 2)
-        rows.append("".join(row_chars))
-    return rows
-
-
 LEVELS = ["NONE", "FIRST_QUARTILE", "SECOND_QUARTILE", "THIRD_QUARTILE", "FOURTH_QUARTILE"]
 HEAT_LIGHT = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"]
 HEAT_DARK = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"]
@@ -275,13 +259,6 @@ def write_stats(total, current, longest, best_start, best_end, top_languages, co
                     count=1,
                 )
     lang_path.write_text(lang, encoding="utf-8")
-
-    year_path = ROOT / "year.svg"
-    year = year_path.read_text(encoding="utf-8")
-    year = replace_text(year, 'x="34" y="32"', f"{sum(bool(day['contributionCount']) for day in days)} of {len(days)} days had a contribution")
-    for index, row in enumerate(year_grid(days)):
-        year = replace_text(year, f'y="{52.6 + index * 11}"', row)
-    year_path.write_text(year, encoding="utf-8")
 
 
 def main():
