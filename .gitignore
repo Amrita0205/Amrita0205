@@ -1,4 +1,4 @@
 __pycache__/
 *.pyc
 images/*
-ASCII_Fidelity_AI_Image06_README.md
+!images/portrait-source.svg

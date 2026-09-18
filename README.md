@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./ascii.svg?v=fidelity" width="460" alt="Amrita Kadam"/>
+<img src="./ascii.svg?v=colour" width="460" alt="Amrita Kadam"/>
 
 <img src="./stats.svg" width="620" alt="Contributions in the last year"/>
 
@@ -62,14 +62,24 @@ LinkedIn content.
 
 <img src="./hd-about-this-page.svg" width="620" alt="about this page"/>
 
-Every graphic here lives in this repository rather than loading from a third-party<br>
-stats service. The contribution graphics are generated from the public GitHub data<br>
-for Amrita0205 by the scheduled workflow. The portrait is a local high-fidelity<br>
-ASCII rendering; other personal photos remain local and unpublished.
+Every graphic here is generated, not embedded from anyone else's server.<br>
+`ascii.svg` is a photo of me drawn in coloured characters, cropped and faded in by<br>
+[`scripts/make_portrait.py`](scripts/make_portrait.py); the stat graphics and<br>
+these section headings are drawn by [a scheduled action](.github/workflows/stats.yml)<br>
+straight from the GitHub GraphQL API, once a day, committing only what changed.
 
-The layout follows the same constraints as the reference design: custom typography<br>
-lives in images, body text stays native to GitHub, and <samp> keeps project metadata<br>
-monospace without turning the page into a wall of badges.
+They animate with SMIL inside the SVG, because GitHub strips scripts from<br>
+READMEs — and since nothing loads from a third party, nothing here can<br>
+rate-limit or go dark. The headings are SVGs for the same reason: GitHub also<br>
+strips CSS, so an image is the only way to put this page's own typeface on them.
+
+The typeface is JetBrains Mono, inlined as base64 inside each graphic so it<br>
+renders the same everywhere. The portrait's grid assumes an advance of exactly<br>
+0.600 em, so every row is pinned to that width — a narrower default monospace<br>
+would otherwise squeeze it.
+
+Language totals cover my own public, non-fork repositories. `year.svg` is one<br>
+character per day, on a ramp of `:` `+` `#` `@`, quiet to loud.
 
 <div align="center">
 <a href="https://github.com/Amrita0205?tab=repositories">all repositories →</a>
